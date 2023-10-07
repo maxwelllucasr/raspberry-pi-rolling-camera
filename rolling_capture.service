@@ -1,0 +1,14 @@
+[Unit]
+Description=Rolling video capture service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/lmaxwell/Desktop/camera.py
+WorkingDirectory=/home/lmaxwell/Desktop
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=lmaxwell
+
+[Install]
+WantedBy=multi-user.target
