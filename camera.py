@@ -33,8 +33,10 @@ while True:
 
 	os.remove(h264_filename)
 
-	all_videos = sorted(glob.glob(f"{video_path}/*.mp4"))
-
-	if (len(all_videos) >= max_videos):
-		oldest_video = all_videos[0]
-		os.remove(oldest_video)
+	 while True:
+                all_videos = sorted(glob.glob(f"{video_path}/*.mp4"))
+                if (len(all_videos) >= max_videos):
+                        oldest_video = all_videos[0]
+                        os.remove(oldest_video)
+                else:
+                        break
