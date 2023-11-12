@@ -3,8 +3,8 @@ Description=Rolling video capture service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/lmaxwell/Desktop/camera.py
-WorkingDirectory=/home/lmaxwell/Desktop
+ExecStart=/usr/bin/python3 /code/camera.py
+WorkingDirectory=/code
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
