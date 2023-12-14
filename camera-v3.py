@@ -7,7 +7,7 @@ import glob
 import subprocess
 
 video_length_seconds = 10 * 60  # 10 minutes
-max_videos = 1000
+max_videos = 500
 video_path = "/videos"  # Replace with your desired path
 
 # Ensure video directory exists
@@ -16,16 +16,20 @@ if not os.path.exists(video_path):
 
 # Initialize camera
 picam2 = Picamera2()
-#picam2.pre_callback = apply_timestamp()
 video_config = picam2.create_video_configuration(transform=Transform(rotation=0))
-#video_config = picam2.create_video_configuration()
 picam2.configure(video_config)
 
 # Function to manage video files
 def trim_videos():
+    all_h264_videos = glob.glob(os.path.join(video_path, "*.h264"))
+    for h264 in all_h264_videos:
+        os.remove(h264)
+
     all_videos = sorted(glob.glob(os.path.join(video_path, "*.mp4")))
     while len(all_videos) > max_videos:
         os.remove(all_videos.pop(0))  # Remove the oldest video
+
+trim_videos()
 
 # Main loop
 while True:
